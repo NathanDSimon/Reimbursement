@@ -54,7 +54,7 @@ public class UserAccountOracleDAO implements UserAccountDAO
 	public void updateUser(User u) 
 	{
 		try {
-			PreparedStatement s = conn.prepareStatement("UPDATE TABLE REIMBURSEMENT.USERS SET EMAIL=?, PASS=?, TYPE=? WHERE USERNAME=?");
+			PreparedStatement s = conn.prepareStatement("UPDATE REIMBURSEMENT.USERS SET EMAIL=?, PASS=?, TYPE=? WHERE USERNAME=?");
 			s.setString(1, u.getEmail());
 			s.setString(2, u.getPass());
 			s.setInt(3, u.getAccountType().getTypeCode());
