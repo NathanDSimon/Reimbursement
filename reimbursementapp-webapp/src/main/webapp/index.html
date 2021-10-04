@@ -21,24 +21,29 @@
   <head>
     <script type="text/javascript" src="js/jquery-1.7.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.1.4.0.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
-  <style>
-  	body {
-  		background-color: #A2C4C9;
-  	}
-  </style>
   <body>
-  <form action = "/reimbursement/login" method="POST">
-  	<div>
-  		<label>Username:</label>
-  		<input type="text" name="userName" id="userName">
-  	</div>
-  	<div>
-  		<label>Password:</label>
-  		<input type="password" name="pass" id="pass">
-  	</div>
-  	<input type="submit" value="Log In">
-  </form>
+  <h1>Company X Reimbursement Portal</h1>
+  <div class="page-container">
+  	
+	  <div class="form-flex-container">
+		  <form action = "/reimbursement/login" method="POST">  
+		  <h2>Please login.</h2>
+		  	<div class="form-element-container">
+		  		<label>Username:</label>
+		  		<input type="text" name="userName" id="userName">
+		  	</div>
+		  	<div class="form-element-container">
+		  		<label>Password:</label>
+		  		<input type="password" name="pass" id="pass">
+		  	</div>
+		  	<div class="button-container">
+		  		<input type="submit" value="Log In">
+		  	</div>
+		  </form>
+	  </div>
+  </div>
   </body>
   <script>
       

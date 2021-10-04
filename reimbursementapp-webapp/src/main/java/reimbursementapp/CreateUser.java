@@ -53,19 +53,19 @@ public class CreateUser extends HttpServlet {
 		{
 			if(!(userAccess.getUserByName((String)s.getAttribute("username")).getAccountType() == User.UserAccountType.admin))
 			{
-				out.write("You don't have access to that.");
+				out.write("<div class=\"error-banner\">You don't have access to that.</div>");
 				RequestDispatcher rd = request.getRequestDispatcher("/maincp");
 				rd.forward(request, response);
 				return;
 			}
 			userAccess.addUser(new User(request.getParameter("new_user_name"), request.getParameter("new_user_pass"), User.UserAccountType.decode(Integer.parseInt(request.getParameter("new_acct_type"))), request.getParameter("new_user_email")));
-			out.write("Added user account.");
+			out.write("<div class=\"success-banner\">Added user account.</div>");
 			RequestDispatcher rd = request.getRequestDispatcher("/maincp");
 			rd.forward(request, response);
 		}
 		else 
 		{
-			out.write("You must log in first!");
+			out.write("<div class=\"error-banner\">You must log in first!</div>");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}

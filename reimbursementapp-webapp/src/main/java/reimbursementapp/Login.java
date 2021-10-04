@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
 		}
 		else
 		{
-			out.write("Incorrect username or password.");
+			out.write("<div class=\"error-banner\" id=\"login-error\">Incorrect username or password.</div>");
 			RequestDispatcher rd=request.getRequestDispatcher("/index.html");  
 	        rd.include(request, response);  
 		}

@@ -59,7 +59,7 @@ public class TicketAdmin extends HttpServlet {
 		{
 			if(!(userAccess.getUserByName((String)s.getAttribute("username")).getAccountType() == User.UserAccountType.admin))
 			{
-				out.write("You don't have access to that.");
+				out.write("<div class=\"error-banner\">You don't have access to that.</div>");
 				RequestDispatcher rd = request.getRequestDispatcher("/maincp");
 				rd.forward(request, response);
 				return;
@@ -87,7 +87,7 @@ public class TicketAdmin extends HttpServlet {
 		}
 		else 
 		{
-			out.write("You must log in first!");
+			out.write("<div class=\"error-banner\">You must log in first!</div>");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}

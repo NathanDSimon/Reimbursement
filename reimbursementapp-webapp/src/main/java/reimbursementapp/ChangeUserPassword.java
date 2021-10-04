@@ -6,22 +6,25 @@ import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
- * Servlet implementation class TicketSubmission
+ * Servlet implementation class ChangeUserPassword
  */
-public class TicketSubmission extends HttpServlet {
+@WebServlet("/chpass")
+public class ChangeUserPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    UserAccountDAO userAccess = new UserAccountOracleDAO();
-    TicketDAO ticketAccess = new TicketOracleDAO();
+	private UserAccountDAO userAccess = new UserAccountOracleDAO();
+       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TicketSubmission() 
+    public ChangeUserPassword()
     {
         super();
     }
@@ -32,16 +35,14 @@ public class TicketSubmission extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException 
 	{
 		userAccess.open();
-		ticketAccess.open();
 	}
 
 	/**
 	 * @see Servlet#destroy()
 	 */
-	public void destroy()
+	public void destroy() 
 	{
 		userAccess.close();
-		ticketAccess.close();
 	}
 
 	/**
@@ -54,20 +55,23 @@ public class TicketSubmission extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		if(s.getAttribute("username") != null && userAccess.getUserByName((String)(s.getAttribute("username"))).comparePassword((String)(s.getAttribute("authToken"))))
 		{
-			try {
-				Ticket t = new Ticket(Ticket.TicketType.decode(Integer.parseInt(request.getParameter("ticketType"))), Double.parseDouble(request.getParameter("amount")), userAccess.getUserByName((String)s.getAttribute("username")), request.getParameter("desc"));
-				ticketAccess.addTicket(t);
-				out.write("<div class=\"success-banner\">The ticket has been submitted for review.</div>");
-			} catch(NumberFormatException e) {
-				e.printStackTrace();
-				out.write("<div class=\"error-banner\">There was an error: one of the required inputs was improperly formatted.</div>");
-			} finally {
-				RequestDispatcher rd = request.getRequestDispatcher("/maincp");
-				rd.include(request, response);
+			User u = userAccess.getUserByName((String)(s.getAttribute("username")));
+			if(!u.comparePassword(request.getParameter("passconfirm")))
+			{
+				out.write("<div class=\"error-banner\" id=\"change-pass-error\">Original password is incorrect.</div>");
 			}
+			else
+			{
+				u.setPassword(request.getParameter("newpass"));
+				userAccess.updateUser(u);
+				out.write("<div class=\"success-banner\">Password changed.</div>");
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("/maincp");
+			rd.include(request, response);
 		}
-		else {
-			out.write("<div class=\"error-banner\">You must log in first!</div>");
+		else 
+		{
+			out.write("You must log in first!");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}

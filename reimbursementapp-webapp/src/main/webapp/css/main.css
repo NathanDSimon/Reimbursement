@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+body {
+  		background-color: #A2C4C9;
+  	}
+  	h1 {
+  	text-align:center;
+  	}
+  	.page-container {
+  		width: 100%;
+  		display: flex;
+  		justify-content: center;
+  	}
+  	.form-flex-container {
+  		border: 1px solid black;
+  		display:flex;
+  		justify-content:center;
+  		margin:auto;
+  	}
+  	.form-flex-container h2 {
+  		text-align:center;
+  		margin:auto;
+  	}
+  	.form-element-container {
+  		width: 75%;
+  		margin:auto;
+  	}
+  	.button-container {
+  		width: 75%;
+  		padding: 10px;
+  		margin:auto;
+  	}
+  	.button-container input {
+  		width:75%;
+  	}
+  	.error-banner{
+  		text-align:center;
+  		margin:auto;
+  		background-color:#f09d97;
+  		border: 1px solid #7d4541;
+  	}
+  	.success-banner {
+  		text-align:center;
+  		margin:auto;
+  		background-color:#caffbd;
+  		border: 1px solid #93b88a;
+  	}

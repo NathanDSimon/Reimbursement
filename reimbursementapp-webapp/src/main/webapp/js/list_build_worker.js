@@ -13,7 +13,7 @@ function buildViewList(viewlist)
 	for(i = 0; i < viewlist.length; i++)
 	{
 		let elem = viewlist[i];
-		container.innerHTML += '<tr><th scope="row">'+ elem.ticketNumber + '</th><td>' + elem.type + '</td><td>' + elem.amount + '</td><td>' + elem.description + '</td><td>' + elem.status + '</td></tr>';
+		container.innerHTML += '<tr><th scope="row">'+ elem.ticketNumber + '</th><td>' + elem.type + '</td><td>&dollar;' + elem.amount + '</td><td>' + elem.description + '</td><td>' + elem.status + '</td></tr>';
 	}
 };
 
@@ -29,6 +29,6 @@ function buildAdminList (listdata)
 	for(i = 0; i < listdata.length; i++)
 	{
 		let elem = listdata[i];
-		container.innerHTML += '<tr><th scope="row">'+ elem.ticketNumber +'</th>' + '<td>'+elem.username+ '</td>'+ '<td>'+ elem.type + '</td>' + '<td>'+ elem.amount + '</td>' + '<td>'+ elem.description + '</td>' + '<td><select name="ticket_' + elem.ticketNumber + '_action" id="ticket_' + elem.ticketNumber + '_action"><option value="nothing" selected>Do Nothing</option><option value="approve">Approve</option><option value="deny">Deny</option></select></td></tr>';		
+		container.innerHTML += '<tr><th scope="row">'+ elem.ticketNumber +'</th>' + '<td>'+elem.username+ '</td>'+ '<td>'+ elem.type + '</td>' + '<td>&dollar;'+ elem.amount + '</td>' + '<td>'+ elem.description + '</td>' + '<td><select name="ticket_' + elem.ticketNumber + '_action" id="ticket_' + elem.ticketNumber + '_action"><option value="nothing" selected>Do Nothing</option><option value="approve">Approve</option><option value="deny">Deny</option></select></td></tr>';		
 	}
 };

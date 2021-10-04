@@ -76,7 +76,7 @@ public class TicketView extends HttpServlet {
 		}
 		else 
 		{
-			out.write("You must log in first!");
+			out.write("<div class=\"error-banner\">You must log in first!</div>");
 			RequestDispatcher rd = request.getRequestDispatcher("/index.html");
 			rd.include(request, response);
 		}
